@@ -66,3 +66,63 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     });
   }
 };
+
+
+export const login = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email, password } = req.body;
+
+    // Validation
+    if (!email || !password) {
+      res.status(400).json({
+        success: false,
+        message: 'Please provide email and password'
+      });
+      return;
+    }
+
+    // Find user and include password for comparison
+    const user = await User.findOne({ email }).select('+password');
+    if (!user) {
+      res.status(401).json({
+        success: false,
+        message: 'Invalid email or password'
+      });
+      return;
+    }
+
+    // Check password
+    const isPasswordCorrect = await user.comparePassword(password);
+    if (!isPasswordCorrect) {
+      res.status(401).json({
+        success: false,
+        message: 'Invalid email or password'
+      });
+      return;
+    }
+
+    // Generate token
+    const token = generateToken(user._id.toString());
+
+    res.status(200).json({
+      success: true,
+      message: 'Login successful',
+      data: {
+        user: {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          urlCount: user.urlCount
+        },
+        token
+      }
+    });
+  } catch (error: any) {
+    console.error('Login Error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error logging in',
+      error: error.message
+    });
+  }
+};
