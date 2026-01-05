@@ -2,8 +2,12 @@ import mongoose from 'mongoose';
 
 const connectDB = async (): Promise<void> => {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/url-shortener';
-    
+    const mongoURI: string = process.env.MONGODB_URI as string;
+
+    // if (!mongoURI) {
+    //   throw new Error('MONGODB_URI is not defined in environment variables');
+    // }
+
     await mongoose.connect(mongoURI);
     
     console.log('MongoDB Connected Successfully');
@@ -14,7 +18,6 @@ const connectDB = async (): Promise<void> => {
   }
 };
 
-// DB connection section
 mongoose.connection.on('disconnected', () => {
   console.log('MongoDB Disconnected');
 });
