@@ -8,7 +8,7 @@ A robust Node.js/Express backend for a URL shortening service, built with TypeSc
 ## 1. Setup Instructions
 
 ### Prerequisites
-- Node.js (Lts recommended)
+- Node.js (Please use updated version >= 20.19.0)
 - MongoDB (Local or Atlas connection string).
 - npm (By default come with node.js)
 
