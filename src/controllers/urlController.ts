@@ -14,7 +14,7 @@ export const createShortUrl = async (
   try {
     const { originalUrl } = req.body;
     const userId = req.user!._id;
-    console.log('Touhid-hit', req.body);
+    
     // Validation
     if (!originalUrl) {
       res.status(400).json({
