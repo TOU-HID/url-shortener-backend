@@ -189,3 +189,45 @@ export const deleteUrl = async (
     });
   }
 };
+
+export const redirectToUrl = async (
+  req: AuthRequest,
+  res: Response
+): Promise<void> => {
+  try {
+    const { shortCode } = req.params;
+
+    if (!shortCode) {
+      res.status(400).json({
+        success: false,
+        message: 'Short code is required'
+      });
+      return;
+    }
+
+    // Find URL by short code
+    const url = await Url.findOne({ shortCode });
+
+    if (!url) {
+      res.status(404).json({
+        success: false,
+        message: 'URL not found'
+      });
+      return;
+    }
+
+    // Increment click count
+    url.clicks += 1;
+    await url.save();
+
+    // Redirect to original URL
+    res.redirect(url.originalUrl);
+  } catch (error: any) {
+    console.error('Redirect Error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Error redirecting',
+      error: error.message
+    });
+  }
+};
