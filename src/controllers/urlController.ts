@@ -4,9 +4,8 @@ import Url from '../models/Url.js';
 import User from '../models/User.js';
 import { generateShortCode } from '../utils/generateShortCode.js';
 
-const URL_LIMIT = 100;
+const URL_LIMIT = 100; // Change this limit for testing fast limit expiration alert.(Like: 5, 6)
 
-// Need to work on this
 export const createShortUrl = async (
   req: AuthRequest,
   res: Response
