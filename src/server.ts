@@ -20,23 +20,15 @@ app.use(cors({
   origin: process.env.FRONTEND_URL,
   credentials: true
 }));
+
 app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/urls', urlRoutes);
 
-// Public redirect route (must be after other routes)
+// Public redirect route
 app.get('/:shortCode', redirectToUrl);
-
-// Health check route
-app.get('/', (req: Request, res: Response) => {
-  res.json({
-    success: true,
-    message: 'URL Shortener API is running',
-    version: '1.0.0'
-  });
-});
 
 // 404 handler
 app.use((req: Request, res: Response) => {
