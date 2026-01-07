@@ -21,14 +21,6 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Log all requests for debugging
-app.use((req: Request, res: Response, next) => {
-  console.log(`${req.method} ${req.path}`);
-  console.log('Touhid');
-  next();
-});
 
 // Routes
 app.use('/api/auth', authRoutes);
