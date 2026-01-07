@@ -8,7 +8,7 @@ Follow these steps to set up and run the project locally.
 
 ### Prerequisites
 
--   [Node.js](https://nodejs.org/) (LTS version recommended)
+-   [Node.js](https://nodejs.org/) (Please use updated version >= 20.19.0)
 -   [npm](https://www.npmjs.com/) (included with Node.js)
 -   Backend server running on `http://localhost:5001` (or your configured URL)
 
