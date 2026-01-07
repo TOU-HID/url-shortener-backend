@@ -22,11 +22,11 @@ A robust Node.js/Express backend for a URL shortening service, built with TypeSc
 
     ```bash
     git clone <repository-url>
-    cd frontend
+    ```
 
 2.  Navigate to the backend directory:
     ```bash
-    cd backend
+    cd url-shortener-backend
     ```
 3.  Install dependencies:
     ```bash

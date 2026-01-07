@@ -18,16 +18,20 @@ Follow these steps to set up and run the project locally.
 
     ```bash
     git clone <repository-url>
-    cd frontend
     ```
 
-2.  **Install dependencies:**
+2.  Navigate to the frontend directory:
+    ```bash
+    cd url-shortener-frontend
+    ```
+
+3.  **Install dependencies:**
 
     ```bash
     npm install
     ```
 
-3.  **Environment Configuration:**
+4.  **Environment Configuration:**
 
     Create a `.env` file in the root of the `frontend` directory:
 
@@ -41,7 +45,7 @@ Follow these steps to set up and run the project locally.
     VITE_API_BASE_URL=http://localhost:5001/api
     ```
 
-4.  **Run the development server:**
+5.  **Run the development server:**
 
     ```bash
     npm run dev
